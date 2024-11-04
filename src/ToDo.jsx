@@ -5,14 +5,19 @@ function ToDo() {
   const [incompleteToDos, setIncompleteToDos] = useState(["ToDoです1","ToDoです2"])
   const [completeToDos, setCompleteToDos] = useState(["ToDo1","ToDo2"])
 
-
   const onChangeToDoText = (event) => setToDoText(event.target.value)
+  const onClickAdd = () => {
+	if (toDoText === "") return
+	const newToDos = [...incompleteToDos,toDoText]
+	setIncompleteToDos(newToDos)
+	setToDoText("")
+  }
 
   return (
     <>
       <div className="input-area">
 		<input placeholder="ToDoを入力" value={toDoText} onChange={onChangeToDoText}/>
-		<button>追加</button>
+		<button onClick={onClickAdd}>追加</button>
       </div>
       <div className="incomplete-area">
 		<p className="title">未完了のToDoです</p>
