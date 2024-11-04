@@ -30,6 +30,15 @@ function ToDo() {
 
   }
 
+  const onClickBack = (index) => {
+  	const newCompleteToDos = [...completeToDos]
+	newCompleteToDos.splice(index,1)
+
+	const newInCompleteToDos = [...incompleteToDos,completeToDos[index]]
+	setCompleteToDos(newCompleteToDos)
+	setIncompleteToDos(newInCompleteToDos)
+  }
+
   return (
     <>
       <div className="input-area">
@@ -54,11 +63,11 @@ function ToDo() {
       <div className="complete-area">
  		<p className="title">完了済みのToDoです</p>
 		<ul>
- 		 {completeToDos.map((todo) => (
+ 		 {completeToDos.map((todo, index) => (
  			<li key={todo}>
 		      <div className="list-row">
 		        <p className="todo-item">{todo}</p>
-		        <button>戻す</button>
+		        <button onClick={() => onClickBack(index)}>戻す</button>
 		      </div>
 		    </li>
 			)
