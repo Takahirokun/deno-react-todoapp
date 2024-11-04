@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 function ToDo() {
   const [toDoText, setToDoText] = useState("")
-  const [incompleteToDos, setIncompleteToDos] = useState(["ToDoです1","ToDoです2"])
-  const [completeToDos, setCompleteToDos] = useState(["ToDo1","ToDo2"])
+  const [incompleteToDos, setIncompleteToDos] = useState([])
+  const [completeToDos, setCompleteToDos] = useState([])
 
 
   const onChangeToDoText = (event) => setToDoText(event.target.value)
