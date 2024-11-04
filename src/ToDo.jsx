@@ -5,12 +5,19 @@ function ToDo() {
   const [incompleteToDos, setIncompleteToDos] = useState(["ToDoです1","ToDoです2"])
   const [completeToDos, setCompleteToDos] = useState(["ToDo1","ToDo2"])
 
+
   const onChangeToDoText = (event) => setToDoText(event.target.value)
   const onClickAdd = () => {
 	if (toDoText === "") return
 	const newToDos = [...incompleteToDos,toDoText]
 	setIncompleteToDos(newToDos)
 	setToDoText("")
+  }
+
+  const onClickDelete = (index) => {
+	const newToDos = [...incompleteToDos]
+	newToDos.splice(index,1)
+	setIncompleteToDos(newToDos)
   }
 
   return (
@@ -22,12 +29,12 @@ function ToDo() {
       <div className="incomplete-area">
 		<p className="title">未完了のToDoです</p>
 		<ul>
-		  {incompleteToDos.map((todo) => (
+		  {incompleteToDos.map((todo, index) => (
  			<li key={todo}>
 		      <div className="list-row">
 		        <p className="todo-item">{todo}</p>
 		        <button>完了</button>
-		        <button>削除</button>
+		        <button onClick={() => onClickDelete(index)}>削除</button>
 		      </div>
 		    </li>
 			)
